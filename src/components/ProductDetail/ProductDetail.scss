@@ -157,8 +157,8 @@
     margin-right: 4%;
   }
   .row {
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
+    -webkit-flex-wrap: none !important;
+    display: block !important;
     margin-right: -15px;
     margin-left: -15px;
   }
