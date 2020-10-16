@@ -633,7 +633,6 @@ export const phones = [
         "colour": "Black",
         "colorCode": "#000000",
         "phoneImages": [
-          "https://n.vodafone.iecontent/dam/gowingmyself/eshopimages/phones/samsung/2018/a7/Samsung-Galaxy-S10-plus-black-front-back(460x640).png",
           "https://n.vodafone.ie/content/dam/gowingmyself/eshopimages/phones/samsung/2019/s10/S10-Front-Black(320x640).png",
           "https://n.vodafone.ie/content/dam/gowingmyself/eshopimages/phones/samsung/2019/s10/S10-Side-Black(320x640).png",
           "https://n.vodafone.ie/content/dam/gowingmyself/eshopimages/phones/samsung/2019/s10/S10-Back-Black(320x640).png"

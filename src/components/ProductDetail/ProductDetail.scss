@@ -146,3 +146,25 @@
 .Glow{
       background-color: yellow;
     }
+
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width:auto;
+    background-color: #fefefe;
+    margin: 30% auto;
+    padding: 20px;
+    border: 1px solid #888;    
+    margin-right: 4%;
+  }
+  .row {
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .price-footer {
+    width: auto;
+}
+    
+       
+}

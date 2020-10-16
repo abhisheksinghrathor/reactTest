@@ -22,6 +22,13 @@ class ProductDetail extends React.Component {
        this.state.selectedPlan1= '';
        this.state.selectedPlan2 = '';
     };
+    componentDidMount() {
+        debugger;
+        if(this.props.product.variants[0].pricingOptions[0].outOfStock != false){
+        this.updateCapacity( this.props.product.variants[0].pricingOptions[0].price, this.props.product.variants[0].pricingOptions[0].capacity, true);
+
+        }
+  }  
     updateColor(color) {
         this.colour = color;
         var localimg;
@@ -33,16 +40,25 @@ class ProductDetail extends React.Component {
             images: this.props.product.variants[i].phoneImages,
             storageOptions: this.props.product.variants[i].pricingOptions
           });
+          if(this.props.product.variants[i].pricingOptions[0].outOfStock != false){
+            this.updateCapacity( this.props.product.variants[i].pricingOptions[0].price, this.props.product.variants[0].pricingOptions[0].capacity, true);    
+            }
+            else{
+                this.updateCapacity( this.props.product.variants[i].pricingOptions[0].price, this.props.product.variants[0].pricingOptions[0].capacity, false);               
+            }   
         }
         } 
         debugger;
         this.refs.ProductSliderImage.changeImg(localimg);
+
     }
+
     updateCapacity(items, capacity, outofstock){
         this.storage = capacity;
         this.setState({
             plans: items
         });
+
         if(outofstock == true){
         $("#instock").css("display","block");
         $("#addtocart").addClass("addtocart-select");  
@@ -86,6 +102,7 @@ class ProductDetail extends React.Component {
     }
     render() {
         let inStock = false;
+        this.phoneprice = this.state.planDetails.phonePrice;
         return (
             <div className="row">
                         <ProductSlider ref="ProductSliderImage" images={this.state.images}/>
@@ -130,7 +147,11 @@ class ProductDetail extends React.Component {
                             <div>
                             <div className="card plan-card"  onClick={() => this.showPlan(item)} >
                             <div className="item-gallery">{item.planName}</div>
+                            {this.phoneprice== '0.00' ? (
+                            <div className="item-gallery">Free</div>
+                            ) : (
                             <div className="item-gallery">€{item.phonePrice}</div>
+                            )}
                             </div>
                             </div>
                         ))}
@@ -154,7 +175,7 @@ class ProductDetail extends React.Component {
                         <div className="price-footer">
                             <button className="button addtocart" id="addtocart">Add to Cart</button>
                         </div>
-                        <div className="price-footer">
+                        <div className="price-footer card">
                         <p>{this.state.selectedPlan1}</p>
                         <p>{this.state.selectedPlan2}</p>
                         </div>                        
@@ -163,7 +184,11 @@ class ProductDetail extends React.Component {
             </aside>
             <div id="myplanModal" class="modal">
                     <div class="modal-content">
-                        <div className="plan-detail plan-header"><p> Pay <b>€{this.state.planDetails.phonePrice}</b> for this phone</p></div>
+                    {this.phoneprice== '0.00' ? (
+                    <div className="plan-detail plan-header"><p>Get this phone <b>Free</b></p></div>
+                    ) : (
+                    <div className="plan-detail plan-header"><p> Pay <b>€{this.state.planDetails.phonePrice}</b> for this phone</p></div>
+                    )}   
                         <div class="filter">
                         <div className="plan-summary plan-detail">
                         <label >{this.state.planDetails.planName}</label><br/>

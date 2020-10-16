@@ -60,6 +60,11 @@ class ProductList extends Component {
         $("#myModal").css("display","block");        
         $("#myModal").css("background-color","rgba(0,0,0,0.4)");
     }
+    clear = () => {
+        $('#brandName').val('');
+        sessionStorage.removeItem('brand');
+        this._onChange();
+    }
 
     sortPrice = (e) =>{
             debugger;
@@ -185,7 +190,7 @@ class ProductList extends Component {
         return (
             <div className="col-lg-12">
                 <div className="row mb-3">
-                    <div className="col-12 d-none d-lg-block d-xl-block">
+                    <div className="col-12 d-lg-block d-xl-block">
                         <div className="card ">
                             <div className="card-header d-flex">
                             <button className="filter-button" onClick={this.handleShow}><i class="fa fa-filter"></i>Filters</button>
@@ -234,9 +239,8 @@ class ProductList extends Component {
                 </div>
                 <div id="myModal" class="modal">
                     <div class="modal-content">
-                        <span class="close" onClick={this.handleClose}>&times;</span><p> CLear</p>
                         <div class="filter">
-                        <label >Filter</label><br/>
+                        <label >Brands</label><br/>
                         <input list="filterbrandName" name="browser" id="brandName"  onChange={this._onChange} className="col-sm-6 custom-select custom-select-sm selectfilter" placeholder="Select Brand"></input>
                         <datalist id="filterbrandName">
                             <option value="Select All"/>
@@ -245,7 +249,7 @@ class ProductList extends Component {
                         </datalist>
                         <hr/>
                         <label >Features</label><br/>
-                        <input list="filterbrandName" name="browser" id="brandName"  onChange={this._onChange} className="col-sm-6 custom-select custom-select-sm selectfilter" placeholder="Select Features"></input>
+                        <input list="filterbrandName" name="browser" id="featureName"  onChange={this._onChange} className="col-sm-6 custom-select custom-select-sm selectfilter" placeholder="Select Features"></input>
                         <datalist id="filterbrandName">
                             <option value="Select All"/>
                             <option value="Samsung"/>
@@ -253,15 +257,18 @@ class ProductList extends Component {
                         </datalist>
                         <hr/>
                         <label >Platform</label><br/>
-                        <input list="filterbrandName" name="browser" id="brandName"  onChange={this._onChange} className="col-sm-6 custom-select custom-select-sm selectfilter" placeholder="Select Platform"></input>
+                        <input list="filterbrandName" name="browser" id="platformName"  onChange={this._onChange} className="col-sm-6 custom-select custom-select-sm selectfilter" placeholder="Select Platform"></input>
                         <datalist id="filterbrandName">
                             <option value="Select All"/>
                             <option value="Samsung"/>
                             <option value="Apple"/>
                         </datalist>
                         <hr/>
-                        
                         </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default btnmodal" data-dismiss="modal" onClick={this.clear}> Clear</button>
+                            <button type="button" class="btn btn-default btnmodal" data-dismiss="modal" onClick={this.handleClose}>Close</button>
+                    </div>
                     </div>
                 </div>
             </div>
